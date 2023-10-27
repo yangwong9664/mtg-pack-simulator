@@ -1,10 +1,9 @@
 package routes
 import cats.effect.IO
 import com.typesafe.scalalogging.StrictLogging
-import io.circe.generic.codec.DerivedAsObjectCodec.deriveCodec
 import models.MtgPackRequest
+import models.external.ScryfallCard._
 import org.http4s.HttpRoutes
-import org.http4s.circe.CirceEntityCodec.circeEntityEncoder
 import org.http4s.dsl.io._
 import services.PackService
 
@@ -15,7 +14,7 @@ object PackRoutes extends StrictLogging {
       for {
         _              <- IO(logger.info(s"Received new pack request."))
         mtgPackRequest <- req.as[MtgPackRequest]
-        result         <- packService.generateBoosterPack(mtgPackRequest)
+        result         <- packService.getRandomCard("mythic", "one")
         response       <- Ok(result)
       } yield response
   }

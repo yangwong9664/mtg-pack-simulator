@@ -75,7 +75,8 @@ libraryDependencies ++= {
     "org.postgresql"             % "postgresql"                         % "42.6.0",
     "io.circe" %% "circe-refined" % circeVersion,
     "org.tpolecat" %% "doobie-refined" % doobieVersion,
-    "com.typesafe" % "config" % "1.4.3"
+    "com.typesafe" % "config" % "1.4.3",
+    "com.lambdista" %% "money" % "0.8.0"
   )
 
   val testDeps = Seq(
